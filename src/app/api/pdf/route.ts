@@ -13,7 +13,10 @@ export async function GET() {
 
   try {
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'networkidle0' });
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    // Wait for web fonts to finish loading — this is the only async
+    // resource that matters for PDF fidelity on this static page.
+    await page.evaluate(() => document.fonts.ready);
 
     const pdf = await page.pdf({
       format: 'A4',

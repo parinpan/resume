@@ -5,6 +5,7 @@ vi.mock('puppeteer', () => {
   const mockPdf = Buffer.from('fake-pdf-content');
   const mockPage = {
     goto: vi.fn().mockResolvedValue(undefined),
+    evaluate: vi.fn().mockResolvedValue(undefined),
     pdf: vi.fn().mockResolvedValue(mockPdf),
   };
   const mockBrowser = {
@@ -59,7 +60,7 @@ describe('PDF API route', () => {
     const page = await browser.newPage();
     expect(page.goto).toHaveBeenCalledWith(
       expect.stringContaining('http://localhost'),
-      { waitUntil: 'networkidle0' },
+      { waitUntil: 'domcontentloaded' },
     );
   });
 
@@ -129,6 +130,7 @@ describe('PDF API route', () => {
     vi.doMock('puppeteer', () => {
       const mockPage = {
         goto: vi.fn().mockResolvedValue(undefined),
+        evaluate: vi.fn().mockResolvedValue(undefined),
         pdf: vi.fn().mockResolvedValue(Buffer.from('pdf')),
       };
       return {
