@@ -58,7 +58,7 @@ describe('Toolbar', () => {
   it('calls fetch to /api/pdf on download click', async () => {
     const user = userEvent.setup();
     const mockBlob = new Blob(['pdf'], { type: 'application/pdf' });
-    const mockResponse = new Response(mockBlob, { status: 200 });
+    const mockResponse = { ok: true, blob: () => Promise.resolve(mockBlob) } as unknown as Response;
     const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue(mockResponse);
 
     // Mock URL APIs
@@ -110,7 +110,8 @@ describe('Toolbar', () => {
   it('re-enables button after successful download', async () => {
     const user = userEvent.setup();
     const mockBlob = new Blob(['pdf'], { type: 'application/pdf' });
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(mockBlob));
+    const mockResponse = { ok: true, blob: () => Promise.resolve(mockBlob) } as unknown as Response;
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(mockResponse);
     vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:test');
     vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
 
