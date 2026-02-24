@@ -1,0 +1,27 @@
+.skills {
+    width: 100%;
+    border-collapse: collapse;
+    break-inside: auto;
+}
+
+.skills tr {
+    break-inside: avoid;       /* don't split a skill row */
+}
+
+.skills td {
+    font-size: var(--sz-body);
+    line-height: var(--lh);
+    vertical-align: top;
+    padding: 4.44pt 0; /* PDF-derived: (21.38pt row - 12.5pt line-box) / 2 */
+}
+
+.skills td:first-child {
+    font-weight: 700;
+    width: 88mm; /* PDF-derived: value col at 24.4183em from page left → (24.4183-3.5433)×12=250.5pt≈88mm */
+    padding-right: 6pt;
+    white-space: nowrap;
+}
+
+.skills td:last-child {
+    font-style: italic;
+}

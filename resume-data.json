@@ -1,0 +1,209 @@
+{
+  "name": "Fachrin Aulia Nasution",
+  "title": "Senior Software Engineer",
+  "contact": {
+    "location": "Berlin, Germany",
+    "phone": "+491639860973",
+    "email": "engineering@fachr.in",
+    "website": "https://fachr.in",
+    "github": "https://github.com/parinpan",
+    "linkedin": "https://linkedin.com/in/fachrinfan"
+  },
+  "sections": [
+    {
+      "type": "profile",
+      "title": "Profile",
+      "data": "A seasoned software engineer with 7 years of experience in designing and managing large-scale distributed systems for millions of users. Proven track record of consistently delivering exceptional results using a diverse range of technologies including Go, Redis, Kafka, BigQuery, SQS, Docker, Kubernetes, AWS, PostgreSQL, HAProxy, NGINX, gRPC, etc."
+    },
+    {
+      "type": "experiences",
+      "title": "Professional Experiences",
+      "data": [
+        {
+          "title": "Senior Product Engineer",
+          "company": "Upvest",
+          "location": "Berlin, Germany",
+          "period": "Oct 2023 - Present",
+          "bullets": [
+            {
+              "text": "Designed a robust system to process corporate action announcements from multiple third-party sources such as: BNP and WMDaten. The system is capable of ensuring the accuracy and integrity of corporate action information (data validation), handling discrepancies between data sources efficiently (conflict management), and consolidating information from various sources into a cohesive dataset (data merging).",
+              "tech": ["Golang", "Kafka", "PostgreSQL", "BigQuery", "gRPC"]
+            },
+            {
+              "text": "Led a strategic cross-functional tax exemption project, enabling efficient management of tax exemption information for a diverse user base across major clients like N26 and Revolut. Played a key role in designing the multi-tenancy architecture for the entire tax exemption system.",
+              "tech": ["Golang", "Kafka", "PostgreSQL", "SFTP", "gRPC"]
+            },
+            {
+              "text": "Introduced a Domain-Driven Design (DDD) code architecture for the corporate action service repository, significantly enhancing project execution speed and productivity, and setting a benchmark for effective code architecture within the organisation.",
+              "tech": ["Golang"]
+            },
+            {
+              "text": "Designed and implemented an extensive Swift MT564 message parser, ensuring full compliance with Swift ISO 20022 standards that enabled the team to effectively extract and map corporate action notification details into the domain model leading to a significant enhancement in data handling and processing efficiency.",
+              "tech": ["Golang", "Swift ISO 20022", "Protobuf"]
+            }
+          ]
+        },
+        {
+          "title": "Senior Software Engineer",
+          "company": "Choco",
+          "location": "Berlin, Germany",
+          "period": "May 2023 - Oct 2023",
+          "bullets": [
+            {
+              "text": "Resolved a critical challenge at Choco by optimising the loading performance of product view pages with up to 2k products. Identified and eliminated bottlenecks in GraphQL queries with numerous resolvers, slashing wait times and significantly enhancing user experience and UI metrics.",
+              "tech": ["AWS Lambda", "GraphQL", "DynamoDB"]
+            },
+            {
+              "text": "Designed and executed a high-performance data migration and synchronisation pipeline, seamlessly transitioning data from legacy to performant data sources while ensuring uninterrupted operations.",
+              "tech": ["DynamoDB Streams", "Amazon Kinesis"]
+            }
+          ]
+        },
+        {
+          "title": "Software Engineer II",
+          "company": "Delivery Hero",
+          "location": "Berlin, Germany",
+          "period": "May 2022 - May 2023",
+          "bullets": [
+            {
+              "text": "Introduced a better mechanism to send metrics to Datadog across the billing domain by writing a proper HTTP and SQS middleware in Golang, allowing teams to improve their monitoring and alerting standards, and help them in obtaining accurate north-star metrics for p50 - p99 distribution of incoming and outgoing http request latency, consumer processing and delay time, and etc.",
+              "tech": ["Golang", "Datadog", "SQS"]
+            }
+          ]
+        },
+        {
+          "title": "Lead Product Engineer",
+          "company": "Gojek",
+          "location": "Jakarta, Indonesia",
+          "period": "Apr 2020 - May 2022",
+          "bullets": [
+            {
+              "text": "Led the launch of new service types such as GoCar Protect, GoRide EV, and GoCar Premium across countries, as well as being heavily involved in its initial technical analysis. It greatly helped Gojek in gaining a large number of active users and successfully becoming the market's top-of-mind during the pandemic"
+            },
+            {
+              "text": "Led the technical analysis and development of Gojek Singapore's Cancellation Fee improvement. It resolved issues with order cancellation caused by incorrect ETA, chained bookings, and driver-induced cancellation. Complaint tickets were reduced by 3%.",
+              "tech": ["Golang", "Python", "Redis", "Kafka", "BigQuery", "TensorFlow"]
+            },
+            {
+              "text": "Led the development of Driver Karma V2. A feature for communicating information about the driver partner's achievement, feedback, and vehicle hygiene to customers. They feel safer to take a ride as a consequence of knowing the driver better.",
+              "tech": ["Golang", "Kafka", "Clojure", "PostgreSQL", "HAProxy"]
+            },
+            {
+              "text": "Researched and developed a machine learning model using BERT algorithm to predict the chat intent between drivers and riders. It helped Gojek in reducing the order cancellation rate by 3% and saved thousands of dollars in Singapore.",
+              "tech": ["Golang", "Python", "Redis", "Kafka", "BigQuery", "TensorFlow"]
+            },
+            {
+              "text": "Initiated and developed an automated testing framework to verify published Kafka messages triggered by some events. It's widely used and attached to the CI/CD pipeline across Gojek product groups like: Transport, GoFood, and Logistic.",
+              "tech": ["Java", "Kafka", "Gitlab"]
+            },
+            {
+              "text": "Developed a revamped Tipping Widget that revolutionised the user experience on giving drivers a tip. It increased the average tip amount by 100%, and increased the tip frequency by 13%.",
+              "tech": ["Golang", "Redis", "Kafka", "PostgreSQL", "RabbitMQ", "HAProxy"]
+            },
+            {
+              "text": "Done numerous engineering initiatives. E.g: reduced Kafka consumer processing time on service deployment from 1 hour to only 5 minutes. The consumer processes roughly ~10K messages per minute.",
+              "tech": ["Clojure", "Kafka"]
+            }
+          ]
+        },
+        {
+          "title": "Software Engineer L3",
+          "company": "Tokopedia",
+          "location": "Jakarta, Indonesia",
+          "period": "Apr 2019 - Mar 2020",
+          "pageBreakBefore": true,
+          "bullets": [
+            {
+              "text": "Worked on SuperInteger, a new integer data type for Tokopedia's Go GraphQL library. Previously, it only supported 32 bit integers, SuperInteger supports 53 bit integers. It is then widely used in the organisation.",
+              "tech": ["Golang", "GraphQL"]
+            },
+            {
+              "text": "Created a database migration layer switching from PostgreSQL to CockroachDB without causing down time. Using CockroachDB helped the team to scale up the database horizontally (sharding).",
+              "tech": ["PostgreSQL", "CockroachDB", "Redis"]
+            },
+            {
+              "text": "Developed a regression test framework to ensure that recent software changes do not negatively impact the existing flow by running a microservice app in an isolated Docker environment.",
+              "tech": ["Golang", "Docker", "gRPC", "Protobuf", "WireMock"]
+            },
+            {
+              "text": "Speed up the shopping cart microservice processing time up to 200-400 ms faster by applying concurrency.",
+              "tech": ["Golang"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "education",
+      "title": "Educations",
+      "data": [
+        {
+          "degree": "Bachelor of Computer Science",
+          "institution": "University of Sumatera Utara",
+          "location": "Medan, Indonesia",
+          "period": "Sep 2014 - Apr 2019",
+          "bullets": [
+            "Grade Point Average: 3.73 out of 4",
+            "Taught some topics as a teaching assistant such as: Programming Fundamentals, Mobile Programming, Object Oriented Programming, Data Structure and Algorithm, Internet Programming, and Semantic Web",
+            "Built a Single Sign On system which is used by thousands of employees. See: https://akun.usu.ac.id",
+            "Built a student directory mobile application to facilitate students in university to look for each other information and it was used by hundreds of students in the university",
+            "Joined some of student organisations: Information Technology Laboratory Group, Research and Development Group, Data Science & Research Group, IEEE Student Group"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "skills",
+      "title": "Skills",
+      "data": [
+        { "category": "Programming Languages", "items": ["Go", "Python", "Typescript", "Clojure", "Java"] },
+        { "category": "Databases", "items": ["PostgreSQL", "MySQL", "DynamoDB", "Redis", "Cassandra"] },
+        { "category": "Message Queues", "items": ["Kafka", "SQS", "RabbitMQ", "NSQ", "STOMP"] },
+        { "category": "Protocols", "items": ["HTTP", "gRPC", "Twirp", "Websocket", "WebRTC"] },
+        { "category": "Containerization", "items": ["Kubernetes", "Docker", "Amazon ECS"] },
+        { "category": "Cloud Services", "items": ["Google Cloud", "AWS", "Aliyun"] },
+        { "category": "APIs, Load Balancers, Reverse Proxies", "items": ["GraphQL", "HAProxy", "Nginx"] },
+        { "category": "Tools", "items": ["Git", "Terraform", "Github Actions", "Prometheus", "Grafana", "Datadog"] }
+      ]
+    },
+    {
+      "type": "shortCourses",
+      "title": "Short Courses",
+      "data": [
+        {
+          "title": "International Youth Summit by XChange Hamada",
+          "location": "Singapore, Singapore",
+          "period": "Aug 2017",
+          "description": "A platform for youth who dare to make a change, giving the participants a lot of experiences to be an extraordinary person by learning abroad in Malaysia & Singapore."
+        },
+        {
+          "title": "Young Entrepreneurs Academy by Global Silicon Valley Labs",
+          "location": "San Mateo, United States",
+          "period": "Apr 2017",
+          "description": "2 weeks innovation bootcamp that builds students to gain the necessary mindset, cultural awareness, and skill set to begin navigating a career as an entrepreneur in Global Silicon Valley Labs (startup incubator)."
+        }
+      ]
+    },
+    {
+      "type": "certifications",
+      "title": "Certifications",
+      "data": [
+        {
+          "name": "Software Development Fundamentals",
+          "issuer": "Microsoft Technology Associate",
+          "year": "2016"
+        },
+        {
+          "name": "HTML5 Application Development Fundamentals",
+          "issuer": "Microsoft Technology Associate",
+          "year": "2016"
+        },
+        {
+          "name": "ICT Project Manager",
+          "issuer": "Indonesia National Professional Certification Body",
+          "year": "2016"
+        }
+      ]
+    }
+  ]
+}

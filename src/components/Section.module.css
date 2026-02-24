@@ -1,0 +1,14 @@
+.section {
+    margin-top: 10pt;
+    break-inside: auto;        /* sections CAN break across pages */
+}
+
+.title {
+    font-size: var(--sz-section);
+    font-weight: 400;
+    /* NOT bold — confirmed from PDF */
+    padding-bottom: 1.5pt;
+    margin-bottom: 5pt;
+    line-height: 1.5; /* PDF-derived: pdf24_08 gives 1.5 × 11pt = 16.5pt */
+    break-after: avoid;        /* title must stay with next content */
+}

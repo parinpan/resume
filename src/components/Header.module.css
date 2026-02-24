@@ -1,0 +1,35 @@
+.header {
+    text-align: center;
+    /* padding-bottom + border replicate the full-width rule visible in PNG below contact links */
+    padding-bottom: 8pt;
+    border-bottom: 0.5pt solid #cccccc;
+    margin-bottom: 0;
+    break-inside: avoid;
+}
+
+.name {
+    font-size: var(--sz-name);
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.address {
+    font-style: normal;
+}
+
+.contact {
+    font-size: var(--sz-body);
+    line-height: 1.55;
+    margin-top: 2pt;
+    color: #434343; /* PDF-derived: pdf24_10 text color */
+}
+
+.contact a {
+    color: #222222;
+    text-decoration: underline;
+}
+
+.sep {
+    margin: 0 4px;
+}

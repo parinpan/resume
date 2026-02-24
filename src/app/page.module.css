@@ -1,0 +1,11 @@
+.profile {
+    font-size: var(--sz-body);
+    line-height: var(--lh);
+    text-align: justify;
+    text-align-last: left;
+    break-inside: avoid;
+}
+
+.pageBreakBefore {
+    break-before: page;
+}

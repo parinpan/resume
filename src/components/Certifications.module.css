@@ -1,0 +1,12 @@
+.certList {
+    padding-left: 12pt;
+}
+
+.certList li {
+    font-size: var(--sz-entry);
+    font-weight: 700;
+    line-height: var(--lh);
+    margin-bottom: 1.8pt;
+    list-style-type: disc;
+    break-inside: avoid;       /* don't split a cert item */
+}

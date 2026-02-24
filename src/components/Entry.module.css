@@ -1,0 +1,57 @@
+.entry {
+    margin-bottom: 5pt;
+    break-inside: auto;        /* entries CAN break if they're long */
+}
+
+.entryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6pt;
+    break-after: avoid;        /* header must stay with first bullet */
+    break-inside: avoid;       /* header line itself must not split */
+}
+
+.entryLeft {
+    font-size: var(--sz-entry);
+    line-height: 1.5; /* PDF-derived: pdf24_08 gives 1.5 × 9pt = 13.5pt */
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.entryLeft strong {
+    font-weight: 700;
+}
+
+.entryRight {
+    font-size: var(--sz-entry);
+    line-height: 1.5; /* PDF-derived: pdf24_08 gives 1.5 × 9pt = 13.5pt */
+    font-weight: 400;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.bulletList {
+    margin-top: 5.5pt;
+    padding-left: 8pt;
+    break-before: avoid;       /* stay with entry header above */
+}
+
+.bulletList li {
+    font-size: var(--sz-body);
+    font-weight: 400;
+    line-height: var(--lh);
+    margin-bottom: 0;
+    list-style-type: disc;
+    text-align: justify;
+    text-align-last: left;
+    break-inside: avoid;       /* don't split a single bullet point */
+    orphans: 2;
+    widows: 2;
+}
+
+@media print {
+    .bulletList {
+        padding-left: 11pt;
+    }
+}
