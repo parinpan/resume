@@ -7,6 +7,7 @@ metadata:
     usage: personal-applications
 
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,16 +26,17 @@ spec:
         app: resume
     spec:
       containers:
-        - name: web
-          image: zot-registry.quail-carat.ts.net/parinpan/resume:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9000
-          env:
-            - name: build_date
-              value: "{{build_date}}"
+      - name: web
+        image: ghcr.io/parinpan/resume:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        env:
+        - name: build_date
+          value: '{{build_date}}'
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,7 +44,7 @@ metadata:
   namespace: apps
 spec:
   ports:
-    - port: 9000
-      targetPort: 9000
+  - port: 9000
+    targetPort: 9000
   selector:
     app: resume
