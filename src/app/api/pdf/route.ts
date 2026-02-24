@@ -13,10 +13,10 @@ export async function GET() {
 
   try {
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'domcontentloaded' });
-    // Wait for web fonts to finish loading — this is the only async
-    // resource that matters for PDF fidelity on this static page.
-    await page.evaluate(() => document.fonts.ready);
+    // 'load' waits for all resources (CSS, fonts, images) to finish loading.
+    // Much faster than networkidle0 (no arbitrary 500ms timeout) while still
+    // guaranteeing fonts are rendered before PDF generation.
+    await page.goto(url, { waitUntil: 'load' });
 
     const pdf = await page.pdf({
       format: 'A4',
