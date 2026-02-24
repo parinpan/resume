@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lora } from "next/font/google";
 import "./globals.css";
 
@@ -8,6 +8,10 @@ const lora = Lora({
   weight: ["400", "700"],
   style: ["normal", "italic"],
 });
+
+export const viewport: Viewport = {
+  width: 1140,
+};
 
 export const metadata: Metadata = {
   title: "Fachrin Aulia Nasution | Senior Software Engineer | Resume",
