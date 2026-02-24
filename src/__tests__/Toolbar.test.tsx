@@ -92,9 +92,8 @@ describe('Toolbar', () => {
 
   it('shows alert on non-ok response', async () => {
     const user = userEvent.setup();
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
-      new Response('', { status: 500, statusText: 'Internal Server Error' }),
-    );
+    const mockResponse = { ok: false, status: 500, statusText: 'Internal Server Error' } as unknown as Response;
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(mockResponse);
     const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
 

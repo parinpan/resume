@@ -13,12 +13,21 @@ export function Toolbar() {
       const res = await fetch('/api/pdf');
       if (!res.ok) throw new Error('PDF generation failed');
       const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
+      // Re-wrap as octet-stream so Safari won't render it inline as a PDF
+      const downloadBlob = new Blob([blob], { type: 'application/octet-stream' });
+      const url = URL.createObjectURL(downloadBlob);
       const a = document.createElement('a');
       a.href = url;
       a.download = 'Fachrin_Aulia_Nasution_Resume.pdf';
+      a.style.display = 'none';
+      // Safari requires the anchor to be in the DOM before clicking
+      document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURL(url);
+      // Delay cleanup so the browser has time to start the download
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 100);
     } catch (err) {
       console.error(err);
       alert('Failed to generate PDF. Please try again.');
