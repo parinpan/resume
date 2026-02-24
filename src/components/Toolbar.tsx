@@ -33,7 +33,7 @@ export function Toolbar() {
     <div className={styles.bar}>
       <div className={styles.content}>
         <p className={styles.text}>
-          This one's worth keeping. Don't worry, it's free.
+          This one&apos;s worth keeping. Don&apos;t worry, it&apos;s free.
         </p>
         <div className={styles.actions}>
           <button

@@ -18,7 +18,6 @@ export default function TestPage() {
         if (!ctx) return;
 
         let bestMatch = null;
-        let minError = Infinity;
 
         // We test font-sizes for body from 8.0pt to 12pt
         for (let fs = 9; fs <= 11; fs += 0.1) {
@@ -35,8 +34,6 @@ export default function TestPage() {
 
             const wExp1L1 = ctx.measureText(TARGETS.exp1Line1).width;
             const wExp1WordNext = ctx.measureText(" WM").width;
-
-            const wExp1L2 = ctx.measureText(TARGETS.exp1Line2).width;
 
             // Let's find a container width that satisfies both
             for (let w = 400; w <= 600; w += 1) {
@@ -58,7 +55,8 @@ export default function TestPage() {
             }
         }
 
-        setResult(bestMatch ? JSON.stringify(bestMatch, null, 2) : 'No exact match found, you may need letter spacing or different font load.');
+        const output = bestMatch ? JSON.stringify(bestMatch, null, 2) : 'No exact match found, you may need letter spacing or different font load.';
+        queueMicrotask(() => setResult(output));
 
     }, []);
 

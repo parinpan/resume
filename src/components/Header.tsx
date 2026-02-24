@@ -15,7 +15,8 @@ export const Header = ({ name, title, contact }: HeaderProps) => {
             </h1>
             <address className={styles.address}>
                 <div className={styles.contact}>
-                    {contact.location} <span className={styles.sep}>•</span> {contact.phone}{' '}
+                    {contact.location} <span className={styles.sep}>•</span>{' '}
+                    <a href={`tel:${contact.phone}`} style={{ color: '#222222', textDecoration: 'none' }}>{contact.phone}</a>{' '}
                     <span className={styles.sep}>•</span>{' '}
                     <a href={`mailto:${contact.email}`} style={{ color: '#222222', textDecoration: 'none' }}>{contact.email}</a>
                 </div>

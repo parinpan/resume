@@ -15,6 +15,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  formatDetection: {
+    telephone: false,
+  },
   title: "Fachrin Aulia Nasution | Senior Software Engineer | Resume",
   description:
     "Senior Software Engineer with 7+ years of experience designing large-scale distributed systems. Skilled in Go, Python, TypeScript, Kafka, PostgreSQL, Kubernetes, AWS, and gRPC. Currently at Upvest in Berlin, Germany. Previously at Choco, Delivery Hero, Gojek, and Tokopedia.",
