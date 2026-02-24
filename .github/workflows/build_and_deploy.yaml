@@ -15,11 +15,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        with:
-          buildkitd-config-inline: |
-            [registry."zot.zot.svc.cluster.local"]
-              http = true
-              insecure = true
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -27,7 +22,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: zot.zot.svc.cluster.local/parinpan/resume:latest
+          tags: zot-registry.quail-carat.ts.net/parinpan/resume:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

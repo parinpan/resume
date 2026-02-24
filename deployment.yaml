@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: zot.zot.svc.cluster.local/parinpan/resume:latest
+          image: zot-registry.quail-carat.ts.net/parinpan/resume:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9000
