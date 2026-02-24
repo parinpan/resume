@@ -128,3 +128,19 @@
         display: none;
     }
 }
+
+/* ─── Mobile ─── */
+@media screen and (max-width: 520px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        margin-bottom: 16px;
+        border-radius: 12px;
+    }
+
+    .text {
+        text-align: center;
+    }
+}
