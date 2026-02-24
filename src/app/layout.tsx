@@ -6,7 +6,7 @@ const lora = Lora({
   variable: "--font-lora",
   subsets: ["latin"],
   weight: ["400", "700"],
-  style: ["normal", "italic"]
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -61,6 +61,15 @@ export const metadata: Metadata = {
     description:
       "Senior Software Engineer with 7+ years building large-scale distributed systems. Go, Kafka, PostgreSQL, Kubernetes, AWS.",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/images/fachrin-cartoon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/images/fachrin-cartoon.png",
+  },
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -79,9 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={lora.variable}>
-        {children}
-      </body>
+      <body className={lora.variable}>{children}</body>
     </html>
   );
 }
