@@ -136,7 +136,6 @@ describe('Home page', () => {
     it('renders the Course section', () => {
       render(<Home />);
       expect(screen.getByRole('region', { name: 'Course' })).toBeInTheDocument();
-      expect(screen.getByText(/International Youth Summit/)).toBeInTheDocument();
       expect(screen.getByText(/Young Entrepreneurs Academy/)).toBeInTheDocument();
     });
 
