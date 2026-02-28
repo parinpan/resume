@@ -1,4 +1,5 @@
 import type { Certification } from '@/types/resume';
+import { toDatetime } from '@/utils/parsers';
 import styles from './Entry.module.css';
 
 interface CertificationsListProps {
@@ -13,7 +14,7 @@ export const CertificationsList = ({ data }: CertificationsListProps) => {
                     <div className={styles.entryLeft}>
                         <strong>{cert.name}, {cert.issuer}</strong>
                     </div>
-                    <time className={styles.entryRight}>{cert.year}</time>
+                    <time className={styles.entryRight} dateTime={toDatetime(cert.year)}>{cert.year}</time>
                 </li>
             ))}
         </ul>

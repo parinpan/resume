@@ -17,7 +17,7 @@
     },
     {
       "type": "experiences",
-      "title": "Professional Experiences",
+      "title": "Experience",
       "data": [
         {
           "title": "Senior Product Engineer",
@@ -110,9 +110,8 @@
           "title": "Software Engineer L3",
           "company": "Tokopedia",
           "location": "Jakarta, Indonesia",
-          "period": "Apr 2019 - Mar 2020",
-          "pageBreakBefore": true,
-          "bullets": [
+           "period": "Apr 2019 - Mar 2020",
+           "bullets": [
             {
               "text": "Worked on SuperInteger, a new integer data type for Tokopedia's Go GraphQL library. Previously, it only supported 32 bit integers, SuperInteger supports 53 bit integers. It is then widely used in the organisation.",
               "tech": ["Golang", "GraphQL"]
@@ -135,7 +134,7 @@
     },
     {
       "type": "education",
-      "title": "Educations",
+      "title": "Education",
       "data": [
         {
           "degree": "Bachelor of Computer Science",
@@ -158,17 +157,17 @@
       "data": [
         { "category": "Programming Languages", "items": ["Go", "Python", "Typescript", "Clojure", "Java"] },
         { "category": "Databases", "items": ["PostgreSQL", "MySQL", "DynamoDB", "Redis", "Cassandra"] },
-        { "category": "Message Queues", "items": ["Kafka", "SQS", "RabbitMQ", "NSQ", "STOMP"] },
-        { "category": "Protocols", "items": ["HTTP", "gRPC", "Twirp", "Websocket", "WebRTC"] },
-        { "category": "Containerization", "items": ["Kubernetes", "Docker", "Amazon ECS"] },
-        { "category": "Cloud Services", "items": ["Google Cloud", "AWS", "Aliyun"] },
-        { "category": "APIs, Load Balancers, Reverse Proxies", "items": ["GraphQL", "HAProxy", "Nginx"] },
+        { "category": "Message Queues", "items": ["Kafka", { "name": "SQS", "fullForm": "Amazon Simple Queue Service" }, "RabbitMQ", "NSQ", { "name": "STOMP", "fullForm": "Simple Text Oriented Messaging Protocol" }] },
+        { "category": "Protocols", "items": [{ "name": "HTTP", "fullForm": "Hypertext Transfer Protocol" }, { "name": "gRPC", "fullForm": "gRPC Remote Procedure Calls" }, "Twirp", "Websocket", { "name": "WebRTC", "fullForm": "Web Real-Time Communication" }] },
+        { "category": "Containerization", "items": ["Kubernetes", "Docker", { "name": "Amazon ECS", "fullForm": "Amazon Elastic Container Service" }] },
+        { "category": "Cloud Services", "items": ["Google Cloud", { "name": "AWS", "fullForm": "Amazon Web Services" }, "Aliyun"] },
+        { "category": "APIs, Load Balancers, Reverse Proxies", "items": ["GraphQL", { "name": "HAProxy", "fullForm": "High Availability Proxy" }, "Nginx"] },
         { "category": "Tools", "items": ["Git", "Terraform", "Github Actions", "Prometheus", "Grafana", "Datadog"] }
       ]
     },
     {
-      "type": "shortCourses",
-      "title": "Short Courses",
+      "type": "courses",
+      "title": "Course",
       "data": [
         {
           "title": "International Youth Summit by XChange Hamada",

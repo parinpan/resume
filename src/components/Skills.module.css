@@ -1,33 +1,39 @@
 .skills {
     width: 100%;
-    border-collapse: collapse;
+    display: table;
     break-inside: auto;
+    margin: 0;
+    padding: 0;
 }
 
-.skills tr {
+.row {
+    display: table-row;
     break-inside: avoid;       /* don't split a skill row */
 }
 
-.skills td {
+.row > dt,
+.row > dd {
+    display: table-cell;
     font-size: var(--sz-body);
     line-height: var(--lh);
     vertical-align: top;
     padding: 4.44pt 0; /* PDF-derived: (21.38pt row - 12.5pt line-box) / 2 */
 }
 
-.skills td:first-child {
+.row > dt {
     font-weight: 700;
     width: 88mm; /* PDF-derived: value col at 24.4183em from page left → (24.4183-3.5433)×12=250.5pt≈88mm */
     padding-right: 6pt;
     white-space: nowrap;
 }
 
-.skills td:last-child {
+.row > dd {
     font-style: italic;
+    margin: 0;
 }
 
 @media screen and (max-width: 1200px) {
-    .skills td:first-child {
+    .row > dt {
         width: auto;
         white-space: normal;
         padding-right: 12px;

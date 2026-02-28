@@ -1,5 +1,5 @@
 .entry {
-    margin-bottom: 5pt;
+    margin-bottom: 4pt;
     break-inside: auto;        /* entries CAN break if they're long */
 }
 
@@ -20,6 +20,26 @@
 }
 
 .entryLeft strong {
+    font-weight: 700;
+}
+
+.jobTitle {
+    font-weight: 700;
+}
+
+.company {
+    font-weight: 700;
+}
+
+.degree {
+    font-weight: 700;
+}
+
+.institution {
+    font-weight: 700;
+}
+
+.atSep {
     font-weight: 700;
 }
 

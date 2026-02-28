@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { CourseEntry } from '@/components/CourseEntry';
-import type { ShortCourse } from '@/types/resume';
+import type { Course } from '@/types/resume';
 
-const mockCourse: ShortCourse = {
+const mockCourse: Course = {
   title: 'AI Bootcamp',
   location: 'San Francisco, USA',
   period: 'Jun 2023',

@@ -19,10 +19,10 @@ describe('Home page', () => {
     expect(heading.textContent).toContain('Fachrin Aulia Nasution');
   });
 
-  it('renders the title in the h1', () => {
-    render(<Home />);
-    const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading.textContent).toContain('Senior Software Engineer');
+  it('does not render a subtitle in the header', () => {
+    const { container } = render(<Home />);
+    const subtitle = container.querySelector('header > p');
+    expect(subtitle).not.toBeInTheDocument();
   });
 
   it('renders the Toolbar', () => {
@@ -106,9 +106,9 @@ describe('Home page', () => {
       expect(screen.getByText(/seasoned software engineer/i)).toBeInTheDocument();
     });
 
-    it('renders the Professional Experiences section', () => {
+    it('renders the Experience section', () => {
       render(<Home />);
-      expect(screen.getByRole('region', { name: 'Professional Experiences' })).toBeInTheDocument();
+      expect(screen.getByRole('region', { name: 'Experience' })).toBeInTheDocument();
     });
 
     it('renders all experience entries', () => {
@@ -120,21 +120,22 @@ describe('Home page', () => {
       expect(screen.getAllByText(/Tokopedia/).length).toBeGreaterThan(0);
     });
 
-    it('renders the Educations section', () => {
+    it('renders the Education section', () => {
       render(<Home />);
-      expect(screen.getByRole('region', { name: 'Educations' })).toBeInTheDocument();
+      expect(screen.getByRole('region', { name: 'Education' })).toBeInTheDocument();
       expect(screen.getByText(/University of Sumatera Utara/)).toBeInTheDocument();
     });
 
     it('renders the Skills section', () => {
-      render(<Home />);
+      const { container } = render(<Home />);
       expect(screen.getByRole('region', { name: 'Skills' })).toBeInTheDocument();
-      expect(screen.getByRole('table', { name: 'Technical skills' })).toBeInTheDocument();
+      const dl = container.querySelector('dl[aria-label="Technical skills"]');
+      expect(dl).toBeInTheDocument();
     });
 
-    it('renders the Short Courses section', () => {
+    it('renders the Course section', () => {
       render(<Home />);
-      expect(screen.getByRole('region', { name: 'Short Courses' })).toBeInTheDocument();
+      expect(screen.getByRole('region', { name: 'Course' })).toBeInTheDocument();
       expect(screen.getByText(/International Youth Summit/)).toBeInTheDocument();
       expect(screen.getByText(/Young Entrepreneurs Academy/)).toBeInTheDocument();
     });
@@ -151,10 +152,10 @@ describe('Home page', () => {
       expect(headings.length).toBe(6);
       const titles = headings.map((h) => h.textContent);
       expect(titles).toContain('Profile');
-      expect(titles).toContain('Professional Experiences');
-      expect(titles).toContain('Educations');
+      expect(titles).toContain('Experience');
+      expect(titles).toContain('Education');
       expect(titles).toContain('Skills');
-      expect(titles).toContain('Short Courses');
+      expect(titles).toContain('Course');
       expect(titles).toContain('Certifications');
     });
   });

@@ -9,6 +9,7 @@ import { SkillsTable } from '@/components/SkillsTable';
 import { CourseEntry } from '@/components/CourseEntry';
 import { CertificationsList } from '@/components/CertificationsList';
 import { Toolbar } from '@/components/Toolbar';
+import { skillItemName } from '@/utils/parsers';
 import styles from './page.module.css';
 
 const DATA: ResumeData = resumeDataRaw as ResumeData;
@@ -17,7 +18,7 @@ function buildJsonLd(data: ResumeData) {
   const skillsSection = data.sections.find((s) => s.type === 'skills');
   const allSkills =
     skillsSection?.type === 'skills'
-      ? skillsSection.data.flatMap((s) => s.items)
+      ? skillsSection.data.flatMap((s) => s.items.map(skillItemName))
       : [];
 
   const experiencesSection = data.sections.find((s) => s.type === 'experiences');
@@ -90,9 +91,7 @@ function renderSection(section: ResumeSection, idx: number) {
       return (
         <Section key={idx} title={section.title}>
           {section.data.map((exp, i) => (
-            <div key={i} className={exp.pageBreakBefore ? styles.pageBreakBefore : undefined}>
-              <ExperienceEntry data={exp} />
-            </div>
+            <ExperienceEntry key={i} data={exp} />
           ))}
         </Section>
       );
@@ -113,7 +112,7 @@ function renderSection(section: ResumeSection, idx: number) {
         </Section>
       );
 
-    case 'shortCourses':
+    case 'courses':
       return (
         <Section key={idx} title={section.title}>
           {section.data.map((course, i) => (
@@ -143,7 +142,7 @@ export default function Home() {
       <Toolbar />
       <main>
         <article className="page" id="page">
-          <Header name={DATA.name} title={DATA.title} contact={DATA.contact} />
+          <Header name={DATA.name} contact={DATA.contact} />
           {DATA.sections.map((section, idx) => renderSection(section, idx))}
         </article>
       </main>

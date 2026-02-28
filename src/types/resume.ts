@@ -17,7 +17,6 @@ export interface Experience {
     company: string;
     location: string;
     period: string;
-    pageBreakBefore?: boolean;
     bullets: Bullet[];
 }
 
@@ -29,12 +28,14 @@ export interface Education {
     bullets: string[];
 }
 
+export type SkillItem = string | { name: string; fullForm: string };
+
 export interface Skill {
     category: string;
-    items: string[];
+    items: SkillItem[];
 }
 
-export interface ShortCourse {
+export interface Course {
     title: string;
     location: string;
     period: string;
@@ -73,10 +74,10 @@ interface SkillsSection {
     data: Skill[];
 }
 
-interface ShortCoursesSection {
-    type: 'shortCourses';
+interface CoursesSection {
+    type: 'courses';
     title: string;
-    data: ShortCourse[];
+    data: Course[];
 }
 
 interface CertificationsSection {
@@ -90,7 +91,7 @@ export type ResumeSection =
     | ExperiencesSection
     | EducationSection
     | SkillsSection
-    | ShortCoursesSection
+    | CoursesSection
     | CertificationsSection;
 
 export interface ResumeData {

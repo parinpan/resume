@@ -26,11 +26,14 @@ describe('EducationEntry', () => {
     expect(screen.getByText(/Cambridge, USA/)).toBeInTheDocument();
   });
 
-  it('renders the period in a time element', () => {
+  it('renders the period in time elements with datetime attributes', () => {
     const { container } = render(<EducationEntry data={baseEducation} />);
-    const time = container.querySelector('time');
-    expect(time).toBeInTheDocument();
-    expect(time?.textContent).toBe('Sep 2014 - Apr 2019');
+    const times = container.querySelectorAll('time');
+    expect(times.length).toBe(2);
+    expect(times[0].textContent).toBe('Sep 2014');
+    expect(times[0].getAttribute('dateTime')).toBe('2014-09');
+    expect(times[1].textContent).toBe('Apr 2019');
+    expect(times[1].getAttribute('dateTime')).toBe('2019-04');
   });
 
   it('renders bullet points', () => {

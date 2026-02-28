@@ -26,11 +26,14 @@ describe('ExperienceEntry', () => {
     expect(screen.getByText(/Berlin, Germany/)).toBeInTheDocument();
   });
 
-  it('renders the period in a time element', () => {
+  it('renders the period in time elements with datetime attributes', () => {
     const { container } = render(<ExperienceEntry data={baseExperience} />);
-    const time = container.querySelector('time');
-    expect(time).toBeInTheDocument();
-    expect(time?.textContent).toBe('Jan 2023 - Present');
+    const times = container.querySelectorAll('time');
+    expect(times.length).toBe(2);
+    expect(times[0].textContent).toBe('Jan 2023');
+    expect(times[0].getAttribute('dateTime')).toBe('2023-01');
+    expect(times[1].textContent).toBe('Present');
+    expect(times[1].getAttribute('dateTime')).toBe('');
   });
 
   it('renders all bullet points', () => {

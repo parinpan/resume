@@ -71,7 +71,7 @@ describe('resume-data.json', () => {
       expect(types).toContain('experiences');
       expect(types).toContain('education');
       expect(types).toContain('skills');
-      expect(types).toContain('shortCourses');
+      expect(types).toContain('courses');
       expect(types).toContain('certifications');
     });
 
@@ -148,16 +148,6 @@ describe('resume-data.json', () => {
       }
     });
 
-    it('pageBreakBefore is boolean when present', () => {
-      if (section?.type === 'experiences') {
-        for (const exp of section.data) {
-          if (exp.pageBreakBefore !== undefined) {
-            expect(typeof exp.pageBreakBefore).toBe('boolean');
-          }
-        }
-      }
-    });
-
     it('period format matches expected patterns', () => {
       if (section?.type === 'experiences') {
         for (const exp of section.data) {
@@ -219,8 +209,13 @@ describe('resume-data.json', () => {
           expect(Array.isArray(skill.items)).toBe(true);
           expect(skill.items.length).toBeGreaterThan(0);
           for (const item of skill.items) {
-            expect(typeof item).toBe('string');
-            expect(item.length).toBeGreaterThan(0);
+            if (typeof item === 'string') {
+              expect(item.length).toBeGreaterThan(0);
+            } else {
+              expect(typeof item).toBe('object');
+              expect(item.name.length).toBeGreaterThan(0);
+              expect(item.fullForm.length).toBeGreaterThan(0);
+            }
           }
         }
       }
@@ -234,18 +229,18 @@ describe('resume-data.json', () => {
     });
   });
 
-  describe('short courses section', () => {
-    const section = data.sections.find((s) => s.type === 'shortCourses');
+  describe('courses section', () => {
+    const section = data.sections.find((s) => s.type === 'courses');
 
     it('exists with at least one course', () => {
       expect(section).toBeDefined();
-      if (section?.type === 'shortCourses') {
+      if (section?.type === 'courses') {
         expect(section.data.length).toBeGreaterThan(0);
       }
     });
 
     it('every course has required fields', () => {
-      if (section?.type === 'shortCourses') {
+      if (section?.type === 'courses') {
         for (const course of section.data) {
           expect(course.title).toBeTruthy();
           expect(course.location).toBeTruthy();

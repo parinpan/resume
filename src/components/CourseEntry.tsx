@@ -1,11 +1,14 @@
-import type { ShortCourse } from '@/types/resume';
+import type { Course } from '@/types/resume';
+import { parsePeriod } from '@/utils/parsers';
 import styles from './Entry.module.css';
 
 interface CourseEntryProps {
-    data: ShortCourse;
+    data: Course;
 }
 
 export const CourseEntry = ({ data }: CourseEntryProps) => {
+    const period = parsePeriod(data.period);
+
     return (
         <article className={styles.entry}>
             <header className={styles.entryHeader}>
@@ -13,9 +16,14 @@ export const CourseEntry = ({ data }: CourseEntryProps) => {
                     <strong>{data.title}</strong>
                     <span style={{ fontWeight: 400 }}> • {data.location}</span>
                 </div>
-                <time className={styles.entryRight}>
-                    {data.period}
-                </time>
+                <div className={styles.entryRight}>
+                    {period.map((p, i) => (
+                        <span key={i}>
+                            {i > 0 && ' - '}
+                            <time dateTime={p.datetime}>{p.label}</time>
+                        </span>
+                    ))}
+                </div>
             </header>
             <p style={{
                 fontSize: 'var(--sz-body)',

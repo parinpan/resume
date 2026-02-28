@@ -8,47 +8,53 @@ const mockSkills: Skill[] = [
   { category: 'Databases', items: ['PostgreSQL', 'Redis'] },
 ];
 
+const mockSkillsWithAbbr: Skill[] = [
+  {
+    category: 'Protocols',
+    items: [
+      { name: 'HTTP', fullForm: 'Hypertext Transfer Protocol' },
+      'Twirp',
+      { name: 'gRPC', fullForm: 'gRPC Remote Procedure Calls' },
+    ],
+  },
+];
+
 describe('SkillsTable', () => {
-  it('renders a table element', () => {
-    render(<SkillsTable data={mockSkills} />);
-    expect(screen.getByRole('table')).toBeInTheDocument();
+  it('renders a <dl> element', () => {
+    const { container } = render(<SkillsTable data={mockSkills} />);
+    expect(container.querySelector('dl')).toBeInTheDocument();
   });
 
   it('has the aria-label "Technical skills"', () => {
-    render(<SkillsTable data={mockSkills} />);
-    expect(screen.getByRole('table', { name: 'Technical skills' })).toBeInTheDocument();
+    const { container } = render(<SkillsTable data={mockSkills} />);
+    const dl = container.querySelector('dl');
+    expect(dl!.getAttribute('aria-label')).toBe('Technical skills');
   });
 
-  it('renders a row for each skill category', () => {
-    render(<SkillsTable data={mockSkills} />);
-    const rows = screen.getAllByRole('row');
-    expect(rows.length).toBe(2);
+  it('renders a <dt>/<dd> pair for each skill category', () => {
+    const { container } = render(<SkillsTable data={mockSkills} />);
+    const dts = container.querySelectorAll('dt');
+    const dds = container.querySelectorAll('dd');
+    expect(dts.length).toBe(2);
+    expect(dds.length).toBe(2);
   });
 
-  it('renders the category name in the first cell', () => {
+  it('renders the category name in <dt>', () => {
     render(<SkillsTable data={mockSkills} />);
     expect(screen.getByText('Programming Languages')).toBeInTheDocument();
     expect(screen.getByText('Databases')).toBeInTheDocument();
   });
 
-  it('renders items joined by comma and space', () => {
-    render(<SkillsTable data={mockSkills} />);
-    expect(screen.getByText('Go, Python, TypeScript')).toBeInTheDocument();
-    expect(screen.getByText('PostgreSQL, Redis')).toBeInTheDocument();
+  it('renders items joined by comma and space in <dd>', () => {
+    const { container } = render(<SkillsTable data={mockSkills} />);
+    const dds = container.querySelectorAll('dd');
+    expect(dds[0].textContent).toBe('Go, Python, TypeScript');
+    expect(dds[1].textContent).toBe('PostgreSQL, Redis');
   });
 
-  it('renders inside a tbody', () => {
+  it('does not render any <table> elements', () => {
     const { container } = render(<SkillsTable data={mockSkills} />);
-    expect(container.querySelector('tbody')).toBeInTheDocument();
-    expect(container.querySelectorAll('tbody tr').length).toBe(2);
-  });
-
-  it('each row has exactly two cells', () => {
-    const { container } = render(<SkillsTable data={mockSkills} />);
-    const rows = container.querySelectorAll('tr');
-    for (const row of rows) {
-      expect(row.querySelectorAll('td').length).toBe(2);
-    }
+    expect(container.querySelector('table')).toBeNull();
   });
 
   it('handles a single skill', () => {
@@ -60,7 +66,37 @@ describe('SkillsTable', () => {
 
   it('handles empty data array', () => {
     const { container } = render(<SkillsTable data={[]} />);
-    expect(container.querySelector('table')).toBeInTheDocument();
-    expect(container.querySelectorAll('tr').length).toBe(0);
+    expect(container.querySelector('dl')).toBeInTheDocument();
+    expect(container.querySelectorAll('dt').length).toBe(0);
+  });
+
+  describe('abbreviation support', () => {
+    it('renders object items as <abbr> with title attribute', () => {
+      const { container } = render(<SkillsTable data={mockSkillsWithAbbr} />);
+      const abbrs = container.querySelectorAll('abbr');
+      expect(abbrs.length).toBe(2);
+
+      const httpAbbr = abbrs[0];
+      expect(httpAbbr.textContent).toBe('HTTP');
+      expect(httpAbbr.getAttribute('title')).toBe('Hypertext Transfer Protocol');
+
+      const grpcAbbr = abbrs[1];
+      expect(grpcAbbr.textContent).toBe('gRPC');
+      expect(grpcAbbr.getAttribute('title')).toBe('gRPC Remote Procedure Calls');
+    });
+
+    it('renders plain string items without <abbr>', () => {
+      const { container } = render(<SkillsTable data={mockSkillsWithAbbr} />);
+      // "Twirp" should be a plain span, not an <abbr>
+      expect(screen.getByText('Twirp')).toBeInTheDocument();
+      const twirpEl = screen.getByText('Twirp');
+      expect(twirpEl.tagName).not.toBe('ABBR');
+    });
+
+    it('mixes plain strings and abbr items in same row', () => {
+      const { container } = render(<SkillsTable data={mockSkillsWithAbbr} />);
+      const dd = container.querySelector('dd');
+      expect(dd!.textContent).toBe('HTTP, Twirp, gRPC');
+    });
   });
 });
