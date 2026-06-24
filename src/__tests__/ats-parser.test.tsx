@@ -214,6 +214,17 @@ describe('ATS: Semantic HTML parsing', () => {
         expect(bullets.length).toBe(experiences[idx].bullets.length);
       });
     });
+
+    it('URLs in experience bullets are rendered as <a> links', () => {
+      const section = doc.querySelector('section[aria-label="Experience"]');
+      const links = section!.querySelectorAll('a[href^="https://"]');
+      expect(links.length).toBeGreaterThan(0);
+
+      links.forEach((link) => {
+        const href = link.getAttribute('href')!;
+        expect(href).toMatch(/^https:\/\//);
+      });
+    });
   });
 
   describe('education entries', () => {

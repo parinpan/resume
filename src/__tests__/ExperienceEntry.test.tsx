@@ -81,4 +81,15 @@ describe('ExperienceEntry', () => {
     const items = screen.getAllByRole('listitem');
     expect(items.length).toBe(2);
   });
+
+  it('converts URLs in bullet text to links via parseLinks', () => {
+    const data: Experience = {
+      ...baseExperience,
+      bullets: [{ text: 'Authored the API contract at https://docs.upvest.co/api/tax-exemptions for client integration.' }],
+    };
+    const { container } = render(<ExperienceEntry data={data} />);
+    const link = container.querySelector('a');
+    expect(link).not.toBeNull();
+    expect(link!.getAttribute('href')).toBe('https://docs.upvest.co/api/tax-exemptions');
+  });
 });

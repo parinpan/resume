@@ -103,7 +103,7 @@ describe('Home page', () => {
     it('renders the Profile section', () => {
       render(<Home />);
       expect(screen.getByRole('region', { name: 'Profile' })).toBeInTheDocument();
-      expect(screen.getByText(/seasoned software engineer/i)).toBeInTheDocument();
+      expect(screen.getByText(/domain polyglot/i)).toBeInTheDocument();
     });
 
     it('renders the Experience section', () => {

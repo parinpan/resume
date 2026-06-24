@@ -13,7 +13,7 @@
     {
       "type": "profile",
       "title": "Profile",
-      "data": "A seasoned software engineer with 7 years of experience in designing and managing large-scale distributed systems for millions of users. Proven track record of consistently delivering exceptional results using a diverse range of technologies including Go, Redis, Kafka, BigQuery, SQS, Docker, Kubernetes, AWS, PostgreSQL, HAProxy, NGINX, gRPC, etc."
+      "data": "Software engineer with 10 years of experience building production systems across ecommerce, mobility, food delivery, and fintech, from ride services at Gojek to investment APIs at Upvest. Domain polyglot across on-demand mobility, fintech, and beyond. Product-minded engineer who owns the full cycle from requirements and design through shipping and validation, and makes product tradeoffs, not just technical ones."
     },
     {
       "type": "experiences",
@@ -23,23 +23,34 @@
           "title": "Senior Product Engineer",
           "company": "Upvest",
           "location": "Berlin, Germany",
-          "period": "Oct 2023 - Present",
+          "period": "Oct 2023 - May 2026",
           "bullets": [
             {
-              "text": "Designed a robust system to process corporate action announcements from multiple third-party sources such as: BNP and WMDaten. The system is capable of ensuring the accuracy and integrity of corporate action information (data validation), handling discrepancies between data sources efficiently (conflict management), and consolidating information from various sources into a cohesive dataset (data merging).",
+              "text": "Built a streaming data pipeline that moves entitlement data from BigQuery into the processing engine using gRPC streaming with Postgres COPY FROM, transferring 300K+ records in seconds. This eliminated a manual step where, at peak seasons, Ops teams processed tens to hundreds of corporate action events per day and had to download eligibility and entitlement records from Looker (settled and unsettled share positions per shareholder), then re-upload them to the processing dashboard. Removed hours of manual work per cycle, cutting out the Looker-to-dashboard round-trips entirely.",
+              "tech": ["Golang", "BigQuery", "gRPC", "PostgreSQL"]
+            },
+            {
+              "text": "Built the corporate action instructions system, which let end users submit their own election choices for voluntary corporate actions (e.g. cash vs. securities for dividends, tender offers) instead of relying on Ops-set static defaults. Authored the API contracts for clients to place corporate action instructions and receive updates via webhooks. DKB (Deutsche Kreditbank) was the first client to integrate. This made Upvest's Investment API enterprise-ready for B2B clients whose users need self-service election capabilities at scale.",
+              "tech": ["Golang", "Kafka", "PostgreSQL", "gRPC"]
+            },
+            {
+              "text": "Designed and built the corporate actions system end to end, from information management through to the processing engine. The information management layer ingests announcements from multiple custodians such as Vestima/Clearstream and BNP Paribas, plus local data providers like WMDaten, then validates, reconciles, and consolidates them into a single golden record that the processing engine depends on for accuracy. Also authored the webhook events contract that clients use for corporate action notification integration (https://docs.upvest.co/api/corporate-actions/corporate_action_event).",
               "tech": ["Golang", "Kafka", "PostgreSQL", "BigQuery", "gRPC"]
             },
             {
-              "text": "Led a strategic cross-functional tax exemption project, enabling efficient management of tax exemption information for a diverse user base across major clients like N26 and Revolut. Played a key role in designing the multi-tenancy architecture for the entire tax exemption system.",
+              "text": "Led a cross-functional tax exemption project, enabling efficient management of tax exemption information for a user base across major clients like N26 and Revolut. Played a key role in designing the multi-tenancy architecture for the tax exemption system. Also authored the public Tax Exemption API contract (https://docs.upvest.co/api/tax-exemptions) that these clients integrate against.",
               "tech": ["Golang", "Kafka", "PostgreSQL", "SFTP", "gRPC"]
             },
             {
-              "text": "Introduced a Domain-Driven Design (DDD) code architecture for the corporate action service repository, significantly enhancing project execution speed and productivity, and setting a benchmark for effective code architecture within the organisation.",
+              "text": "Introduced a Domain-Driven Design (DDD) code architecture for the corporate action service repository, significantly enhancing project execution speed and productivity, and setting a benchmark for effective code architecture within the organisation. Other teams later adopted the same pattern for their own services.",
               "tech": ["Golang"]
             },
             {
-              "text": "Designed and implemented an extensive Swift MT564 message parser, ensuring full compliance with Swift ISO 20022 standards that enabled the team to effectively extract and map corporate action notification details into the domain model leading to a significant enhancement in data handling and processing efficiency.",
+              "text": "Designed and implemented Swift MT564, MT567, MT565, and MT568 message parsers, ensuring full compliance with Swift ISO 20022 standards that enabled the team to effectively extract and map corporate action notification and instruction details into the domain model, significantly improving data handling and processing efficiency. The parsers feed structured data directly into both the corporate actions pipeline and the instructions management system.",
               "tech": ["Golang", "Swift ISO 20022", "Protobuf"]
+            },
+            {
+              "text": "Conducted technical interviews for software developer candidates and built the question bank and evaluation standards used by the engineering team."
             }
           ]
         },
@@ -50,11 +61,11 @@
           "period": "May 2023 - Oct 2023",
           "bullets": [
             {
-              "text": "Resolved a critical challenge at Choco by optimising the loading performance of product view pages with up to 2k products. Identified and eliminated bottlenecks in GraphQL queries with numerous resolvers, slashing wait times and significantly enhancing user experience and UI metrics.",
+              "text": "Resolved a critical challenge at Choco by optimising the loading performance of product view pages with up to 2k products. Identified and eliminated bottlenecks in GraphQL queries with numerous resolvers, slashing wait times and enhancing user experience and UI metrics. Rewrote the worst-offending queries and collapsed redundant resolver calls, bringing page load time down to a range where the product was actually usable for merchants.",
               "tech": ["AWS Lambda", "GraphQL", "DynamoDB"]
             },
             {
-              "text": "Designed and executed a high-performance data migration and synchronisation pipeline, seamlessly transitioning data from legacy to performant data sources while ensuring uninterrupted operations.",
+              "text": "Designed and executed a high-performance data migration and synchronisation pipeline, seamlessly transitioning data from legacy to performant data sources while ensuring uninterrupted operations. Used DynamoDB Streams and Kinesis to keep old and new data stores in sync during the cutover, so no reads or writes were dropped during the migration window.",
               "tech": ["DynamoDB Streams", "Amazon Kinesis"]
             }
           ]
@@ -66,7 +77,7 @@
           "period": "May 2022 - May 2023",
           "bullets": [
             {
-              "text": "Introduced a better mechanism to send metrics to Datadog across the billing domain by writing a proper HTTP and SQS middleware in Golang, allowing teams to improve their monitoring and alerting standards, and help them in obtaining accurate north-star metrics for p50 - p99 distribution of incoming and outgoing http request latency, consumer processing and delay time, and etc.",
+              "text": "Introduced a better mechanism to send metrics to Datadog across the billing domain by writing a proper HTTP and SQS middleware in Golang, allowing teams to improve their monitoring and alerting standards, and help them obtain accurate north-star metrics for p50 to p99 distribution of incoming and outgoing HTTP request latency, consumer processing and delay time, and so on. The middleware was adopted as the standard across the billing domain, giving every team a consistent way to track latency and set alerts without custom instrumentation.",
               "tech": ["Golang", "Datadog", "SQS"]
             }
           ]
@@ -78,30 +89,31 @@
           "period": "Apr 2020 - May 2022",
           "bullets": [
             {
-              "text": "Led the launch of new service types such as GoCar Protect, GoRide EV, and GoCar Premium across countries, as well as being heavily involved in its initial technical analysis. It greatly helped Gojek in gaining a large number of active users and successfully becoming the market's top-of-mind during the pandemic"
+              "text": "Led the launch of new service types such as GoCar Protect, GoRide EV, and GoCar Premium across multiple Southeast Asian markets, and was heavily involved in the initial technical analysis and cross-functional execution. It greatly helped Gojek in gaining a large number of active users and becoming the market's top-of-mind during the pandemic.",
+              "tech": ["Golang", "Kafka", "Redis", "PostgreSQL"]
             },
             {
-              "text": "Led the technical analysis and development of Gojek Singapore's Cancellation Fee improvement. It resolved issues with order cancellation caused by incorrect ETA, chained bookings, and driver-induced cancellation. Complaint tickets were reduced by 3%.",
+              "text": "Led the technical analysis and development of Gojek Singapore's Cancellation Fee improvement. It resolved systemic issues with order cancellation caused by incorrect ETA calculations, chained bookings, and driver-induced cancellation. Complaint tickets were reduced by 3%, which also reduced the volume of manual refund reviews the support team had to handle.",
               "tech": ["Golang", "Python", "Redis", "Kafka", "BigQuery", "TensorFlow"]
             },
             {
-              "text": "Led the development of Driver Karma V2. A feature for communicating information about the driver partner's achievement, feedback, and vehicle hygiene to customers. They feel safer to take a ride as a consequence of knowing the driver better.",
+              "text": "Led the development of Driver Karma V2, a feature for communicating information about the driver partner's achievements, feedback scores, and vehicle hygiene to customers. They feel safer taking a ride as a consequence of knowing the driver better, which contributed to stronger customer trust and an improved ride experience on the platform.",
               "tech": ["Golang", "Kafka", "Clojure", "PostgreSQL", "HAProxy"]
             },
             {
-              "text": "Researched and developed a machine learning model using BERT algorithm to predict the chat intent between drivers and riders. It helped Gojek in reducing the order cancellation rate by 3% and saved thousands of dollars in Singapore.",
+              "text": "Researched and developed a machine learning model using BERT to predict the chat intent between drivers and riders during active bookings. It reduced cancellation disputes raised by unfair driver-induced cancellation events, and saved the company ~75K SGD within the first 3 months of the model being shipped.",
               "tech": ["Golang", "Python", "Redis", "Kafka", "BigQuery", "TensorFlow"]
             },
             {
-              "text": "Initiated and developed an automated testing framework to verify published Kafka messages triggered by some events. It's widely used and attached to the CI/CD pipeline across Gojek product groups like: Transport, GoFood, and Logistic.",
+              "text": "Initiated and developed an automated testing framework to verify published Kafka messages across event-driven workflows. It's integrated into the CI/CD pipeline and subsequently adopted across Gojek product groups like Transport, GoFood, and Logistics, giving those teams an automated way to catch message contract regressions before deployment.",
               "tech": ["Java", "Kafka", "Gitlab"]
             },
             {
-              "text": "Developed a revamped Tipping Widget that revolutionised the user experience on giving drivers a tip. It increased the average tip amount by 100%, and increased the tip frequency by 13%.",
+              "text": "Developed a revamped Tipping Widget for GoCar and GoRide that addressed a discoverability problem where over 90% of orders received no tips. The revised experience introduced on-trip tipping, contextual reminders, emotion-linked tip selectors, and driver humanisation elements. It increased the average tip amount by 100%, and increased the tip frequency by 13% within the first few weeks of launch.",
               "tech": ["Golang", "Redis", "Kafka", "PostgreSQL", "RabbitMQ", "HAProxy"]
             },
             {
-              "text": "Done numerous engineering initiatives. E.g: reduced Kafka consumer processing time on service deployment from 1 hour to only 5 minutes. The consumer processes roughly ~10K messages per minute.",
+              "text": "Ran numerous engineering initiatives across the transport platform. For example, reduced Kafka consumer processing time on service deployment from 1 hour to only 5 minutes. The consumer processes roughly 10K messages per minute, so the 55-minute saving was significant at scale.",
               "tech": ["Clojure", "Kafka"]
             }
           ]
@@ -145,7 +157,7 @@
             "Grade Point Average: 3.73 out of 4",
             "Taught some topics as a teaching assistant such as: Programming Fundamentals, Mobile Programming, Object Oriented Programming, Data Structure and Algorithm, Internet Programming, and Semantic Web",
             "Built a Single Sign On system which is used by thousands of employees. See: https://akun.usu.ac.id",
-            "Built a student directory mobile application to facilitate students in university to look for each other information and it was used by hundreds of students in the university",
+            "Built a student directory mobile application to help students look up each other's information, and it was used by hundreds of students in the university. The app was one of the first student-built tools adopted at that scale on campus.",
             "Joined some of student organisations: Information Technology Laboratory Group, Research and Development Group, Data Science & Research Group, IEEE Student Group"
           ]
         }

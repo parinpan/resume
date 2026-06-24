@@ -1,5 +1,5 @@
 import type { Experience } from '@/types/resume';
-import { parsePeriod } from '@/utils/parsers';
+import { parseLinks, parsePeriod } from '@/utils/parsers';
 import styles from './Entry.module.css';
 
 interface ExperienceEntryProps {
@@ -30,7 +30,7 @@ export const ExperienceEntry = ({ data }: ExperienceEntryProps) => {
             <ul className={styles.bulletList}>
                 {data.bullets.map((bullet, idx) => (
                     <li key={idx}>
-                        {bullet.text}
+                        {parseLinks(bullet.text)}
                         {bullet.tech && bullet.tech.length > 0 && (
                             <> <b>Tech: {bullet.tech.join(', ')}</b></>
                         )}
