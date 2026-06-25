@@ -29,7 +29,7 @@ export async function GET() {
 
     const rawPdf = await page.pdf({
       format: 'A4',
-      margin: { top: '11.85mm', right: '15.5mm', bottom: '16.4mm', left: '15mm' },
+      margin: { top: '19mm', right: '19mm', bottom: '19mm', left: '19mm' },
       printBackground: true,
       displayHeaderFooter: false,
     });

@@ -102,7 +102,7 @@ describe('PDF API route', () => {
     const page = await browser.newPage();
     expect(page.pdf).toHaveBeenCalledWith({
       format: 'A4',
-      margin: { top: '11.85mm', right: '15.5mm', bottom: '16.4mm', left: '15mm' },
+      margin: { top: '19mm', right: '19mm', bottom: '19mm', left: '19mm' },
       printBackground: true,
       displayHeaderFooter: false,
     });

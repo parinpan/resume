@@ -6,8 +6,6 @@ import { Section } from '@/components/Section';
 import { ExperienceEntry } from '@/components/ExperienceEntry';
 import { EducationEntry } from '@/components/EducationEntry';
 import { SkillsTable } from '@/components/SkillsTable';
-import { CourseEntry } from '@/components/CourseEntry';
-import { CertificationsList } from '@/components/CertificationsList';
 import { Toolbar } from '@/components/Toolbar';
 import { skillItemName } from '@/utils/parsers';
 import styles from './page.module.css';
@@ -28,10 +26,6 @@ function buildJsonLd(data: ResumeData) {
   const educationSection = data.sections.find((s) => s.type === 'education');
   const education =
     educationSection?.type === 'education' ? educationSection.data : [];
-
-  const certificationsSection = data.sections.find((s) => s.type === 'certifications');
-  const certifications =
-    certificationsSection?.type === 'certifications' ? certificationsSection.data : [];
 
   const profileSection = data.sections.find((s) => s.type === 'profile');
   const profileText = profileSection?.type === 'profile' ? profileSection.data : '';
@@ -64,15 +58,6 @@ function buildJsonLd(data: ResumeData) {
       alumniOf: education.map((edu) => ({
         '@type': 'EducationalOrganization',
         name: edu.institution,
-      })),
-      hasCredential: certifications.map((cert) => ({
-        '@type': 'EducationalOccupationalCredential',
-        name: cert.name,
-        credentialCategory: 'certificate',
-        recognizedBy: {
-          '@type': 'Organization',
-          name: cert.issuer,
-        },
       })),
     },
   };
@@ -109,22 +94,6 @@ function renderSection(section: ResumeSection, idx: number) {
       return (
         <Section key={idx} title={section.title}>
           <SkillsTable data={section.data} />
-        </Section>
-      );
-
-    case 'courses':
-      return (
-        <Section key={idx} title={section.title}>
-          {section.data.map((course, i) => (
-            <CourseEntry key={i} data={course} />
-          ))}
-        </Section>
-      );
-
-    case 'certifications':
-      return (
-        <Section key={idx} title={section.title}>
-          <CertificationsList data={section.data} />
         </Section>
       );
   }

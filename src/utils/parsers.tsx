@@ -8,19 +8,91 @@ export function skillItemName(item: SkillItem): string {
     return typeof item === 'string' ? item : item.name;
 }
 
-export const parseLinks = (text: string) => {
-    const urlRegex = /(https?:\/\/\S+)/g;
-    const parts = text.split(urlRegex);
+type Segment = { type: 'text'; value: string } | { type: 'link'; label: string; url: string };
 
-    return parts.map((part, index) => {
-        if (part.match(urlRegex)) {
+/**
+ * Tokenize a string into text segments and link segments.
+ *
+ * Supports two link syntaxes:
+ * 1. Markdown links: [label](url) — renders <a> with label as visible text.
+ * 2. Bare URLs: https://example.com — auto-linked with the URL as visible text.
+ *
+ * Tokenization is done with a hand-written character scanner (no regex)
+ * to keep the logic transparent and easy to maintain.
+ */
+function tokenize(text: string): Segment[] {
+    const segments: Segment[] = [];
+    let buffer = '';
+    let i = 0;
+
+    const flushBuffer = () => {
+        if (buffer) {
+            segments.push({ type: 'text', value: buffer });
+            buffer = '';
+        }
+    };
+
+    while (i < text.length) {
+        // ── Markdown link: [label](url) ──
+        if (text[i] === '[') {
+            const closeBracket = text.indexOf(']', i + 1);
+            if (closeBracket !== -1 && text[closeBracket + 1] === '(') {
+                const closeParen = text.indexOf(')', closeBracket + 2);
+                if (closeParen !== -1) {
+                    const label = text.slice(i + 1, closeBracket);
+                    const url = text.slice(closeBracket + 2, closeParen);
+                    if (label && url) {
+                        flushBuffer();
+                        segments.push({ type: 'link', label, url });
+                        i = closeParen + 1;
+                        continue;
+                    }
+                    // Invalid markdown link (e.g. empty label) — consume the
+                    // entire bracket+paren span as plain text so any URL inside
+                    // the parentheses is not picked up by the bare URL detector.
+                    buffer += text.slice(i, closeParen + 1);
+                    i = closeParen + 1;
+                    continue;
+                }
+            }
+        }
+
+        // ── Bare URL: http:// or https:// ──
+        if (text[i] === 'h' && (text.startsWith('http://', i) || text.startsWith('https://', i))) {
+            let end = i;
+            while (end < text.length && !/\s/.test(text[end])) {
+                end++;
+            }
+            // Trim trailing punctuation that's unlikely part of the URL
+            while (end > i + 8 && /[.,;:!?\])}>'"]/.test(text[end - 1])) {
+                end--;
+            }
+            if (end > i) {
+                flushBuffer();
+                segments.push({ type: 'link', label: text.slice(i, end), url: text.slice(i, end) });
+                i = end;
+                continue;
+            }
+        }
+
+        buffer += text[i];
+        i++;
+    }
+
+    flushBuffer();
+    return segments;
+}
+
+export const parseLinks = (text: string) => {
+    return tokenize(text).map((seg, index) => {
+        if (seg.type === 'link') {
             return (
-                <a key={index} href={part} target="_blank" rel="noopener noreferrer" style={{ color: '#222222' }}>
-                    {part}
+                <a key={index} href={seg.url} target="_blank" rel="noopener noreferrer" style={{ color: '#222222' }}>
+                    {seg.label}
                 </a>
             );
         }
-        return part;
+        return seg.value;
     });
 };
 

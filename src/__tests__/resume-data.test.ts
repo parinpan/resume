@@ -71,8 +71,6 @@ describe('resume-data.json', () => {
       expect(types).toContain('experiences');
       expect(types).toContain('education');
       expect(types).toContain('skills');
-      expect(types).toContain('courses');
-      expect(types).toContain('certifications');
     });
 
     it('has no duplicate section types', () => {

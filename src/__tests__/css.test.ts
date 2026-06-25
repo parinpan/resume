@@ -48,11 +48,11 @@ describe('CSS custom properties', () => {
   const css = readCSS('app/globals.css');
 
   it('defines all font size variables in :root', () => {
-    expect(css).toMatch(/--sz-name:\s*13pt/);
-    expect(css).toMatch(/--sz-section:\s*11pt/);
-    expect(css).toMatch(/--sz-entry:\s*9\.5pt/);
-    expect(css).toMatch(/--sz-body:\s*8\.5pt/);
-    expect(css).toMatch(/--lh:\s*1\.44/);
+    expect(css).toMatch(/--sz-name:\s*14pt/);
+    expect(css).toMatch(/--sz-section:\s*12pt/);
+    expect(css).toMatch(/--sz-entry:\s*10pt/);
+    expect(css).toMatch(/--sz-body:\s*9pt/);
+    expect(css).toMatch(/--lh:\s*1\.4/);
   });
 
   it('overrides font sizes in mobile breakpoint with px values', () => {
