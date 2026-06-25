@@ -1,5 +1,6 @@
 export interface Contact {
     location: string;
+    workAuthorization?: string;
     phone: string;
     email: string;
     website: string;

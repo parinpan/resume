@@ -13,7 +13,7 @@
   --sz-name:    14pt;
   --sz-section: 12pt;
   --sz-entry:   10pt;
-  --sz-body:   9pt;
+  --sz-body:   8.5pt;
   --lh: 1.4;
 }
 
@@ -46,7 +46,7 @@ body {
   min-height: 297mm;
   background: #fff;
   margin: 24px auto;
-  padding: 19mm;
+  padding: 13mm;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .25);
   border-radius: 2px;
   display: flex;
@@ -102,6 +102,6 @@ body {
 
   @page {
     size: A4;
-    margin: 19mm;
+    margin: 13mm;
   }
 }

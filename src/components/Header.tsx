@@ -13,6 +13,12 @@ export const Header = ({ name, contact }: HeaderProps) => {
             <address className={styles.address}>
                 <div className={styles.contact}>
                     <span className="sr-only">Location: </span>{contact.location}{' '}
+                    {contact.workAuthorization && (
+                        <>
+                            <span className={styles.sep}>•</span>{' '}
+                            <span className="sr-only">Work authorization: </span>{contact.workAuthorization}{' '}
+                        </>
+                    )}
                     <span className={styles.sep}>•</span>{' '}
                     <span className="sr-only">Phone: </span>
                     <a href={`tel:${contact.phone}`} style={{ color: '#222222', textDecoration: 'none' }}>{contact.phone}</a>{' '}

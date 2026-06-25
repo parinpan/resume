@@ -71,14 +71,12 @@ describe('Home page', () => {
     expect(jsonLd.mainEntity.knowsAbout).toContain('Go');
   });
 
-  it('JSON-LD includes alumni and credentials', () => {
+  it('JSON-LD includes alumni', () => {
     const { container } = render(<Home />);
     const script = container.querySelector('script[type="application/ld+json"]');
     const jsonLd = JSON.parse(script!.textContent!);
     expect(Array.isArray(jsonLd.mainEntity.alumniOf)).toBe(true);
     expect(jsonLd.mainEntity.alumniOf.length).toBeGreaterThan(0);
-    expect(Array.isArray(jsonLd.mainEntity.hasCredential)).toBe(true);
-    expect(jsonLd.mainEntity.hasCredential.length).toBeGreaterThan(0);
   });
 
   it('JSON-LD includes sameAs with social links', () => {
@@ -103,7 +101,7 @@ describe('Home page', () => {
     it('renders the Profile section', () => {
       render(<Home />);
       expect(screen.getByRole('region', { name: 'Profile' })).toBeInTheDocument();
-      expect(screen.getByText(/domain polyglot/i)).toBeInTheDocument();
+      expect(screen.getByText(/owning ambiguous product problems/i)).toBeInTheDocument();
     });
 
     it('renders the Experience section', () => {
@@ -133,29 +131,15 @@ describe('Home page', () => {
       expect(dl).toBeInTheDocument();
     });
 
-    it('renders the Course section', () => {
-      render(<Home />);
-      expect(screen.getByRole('region', { name: 'Course' })).toBeInTheDocument();
-      expect(screen.getByText(/Young Entrepreneurs Academy/)).toBeInTheDocument();
-    });
-
-    it('renders the Certifications section', () => {
-      render(<Home />);
-      expect(screen.getByRole('region', { name: 'Certifications' })).toBeInTheDocument();
-      expect(screen.getByText(/Software Development Fundamentals/)).toBeInTheDocument();
-    });
-
-    it('renders all 6 section headings', () => {
+    it('renders all 4 section headings', () => {
       render(<Home />);
       const headings = screen.getAllByRole('heading', { level: 2 });
-      expect(headings.length).toBe(6);
+      expect(headings.length).toBe(4);
       const titles = headings.map((h) => h.textContent);
       expect(titles).toContain('Profile');
       expect(titles).toContain('Experience');
       expect(titles).toContain('Education');
       expect(titles).toContain('Skills');
-      expect(titles).toContain('Course');
-      expect(titles).toContain('Certifications');
     });
   });
 });

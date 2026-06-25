@@ -137,7 +137,7 @@ describe('ATS: Semantic HTML parsing', () => {
       const headings = h2s.map((h) => h.textContent!.trim());
 
       // These are the standard labels ATS systems recognise
-      const atsStandard = ['Profile', 'Experience', 'Education', 'Skills', 'Certifications'];
+      const atsStandard = ['Profile', 'Experience', 'Education', 'Skills'];
       for (const label of atsStandard) {
         expect(headings).toContain(label);
       }
@@ -315,60 +315,16 @@ describe('ATS: Semantic HTML parsing', () => {
       expect(dl).not.toBeNull();
       const abbrs = dl!.querySelectorAll('abbr');
 
-      // We have 8 items with fullForm in the data
-      expect(abbrs.length).toBe(8);
+      // One <abbr> per skill item that has a fullForm in the data
+      const expectedAbbrCount = skills
+        .flatMap((s) => s.items)
+        .filter((item) => typeof item !== 'string').length;
+      expect(abbrs.length).toBe(expectedAbbrCount);
 
       // Verify each <abbr> has a non-empty title
       abbrs.forEach((abbr) => {
         expect(abbr.getAttribute('title')).toBeTruthy();
         expect(abbr.textContent!.trim().length).toBeGreaterThan(0);
-      });
-    });
-  });
-
-  describe('certifications', () => {
-    const certSection = DATA.sections.find((s) => s.type === 'certifications');
-    const certs = certSection?.type === 'certifications' ? certSection.data : [];
-
-    it('certifications are in a list', () => {
-      const section = doc.querySelector('section[aria-label="Certifications"]');
-      expect(section).not.toBeNull();
-      const items = section!.querySelectorAll('li');
-      expect(items.length).toBe(certs.length);
-    });
-
-    it('certification years are in <time> elements with dateTime', () => {
-      const section = doc.querySelector('section[aria-label="Certifications"]');
-      expect(section).not.toBeNull();
-      const times = section!.querySelectorAll('time');
-      expect(times.length).toBe(certs.length);
-
-      times.forEach((time, idx) => {
-        expect(time.textContent!.trim()).toBe(certs[idx].year);
-        expect(time.getAttribute('dateTime')).toBe(certs[idx].year);
-      });
-    });
-  });
-
-  describe('courses', () => {
-    const courseSection = DATA.sections.find((s) => s.type === 'courses');
-    const courses = courseSection?.type === 'courses' ? courseSection.data : [];
-
-    it('each course is in an <article> element', () => {
-      const section = doc.querySelector('section[aria-label="Course"]');
-      expect(section).not.toBeNull();
-      const articles = section!.querySelectorAll('article');
-      expect(articles.length).toBe(courses.length);
-    });
-
-    it('course dates have <time> elements with dateTime', () => {
-      const section = doc.querySelector('section[aria-label="Course"]');
-      expect(section).not.toBeNull();
-      const articles = section!.querySelectorAll('article');
-
-      articles.forEach((article) => {
-        const times = article.querySelectorAll('time');
-        expect(times.length).toBeGreaterThanOrEqual(1);
       });
     });
   });
@@ -569,25 +525,6 @@ describe('ATS: Plain-text extraction', () => {
     });
   });
 
-  describe('certifications from raw text', () => {
-    const certSection = DATA.sections.find((s) => s.type === 'certifications');
-    const certs = certSection?.type === 'certifications' ? certSection.data : [];
-
-    it('every certification name appears in plain text', () => {
-      const plainText = extractVisibleText(doc);
-      for (const cert of certs) {
-        expect(plainText).toContain(cert.name);
-      }
-    });
-
-    it('every certification issuer appears in plain text', () => {
-      const plainText = extractVisibleText(doc);
-      for (const cert of certs) {
-        expect(plainText).toContain(cert.issuer);
-      }
-    });
-  });
-
   describe('no data loss or corruption', () => {
     it('plain text contains substantial content (not empty / broken render)', () => {
       const plainText = extractVisibleText(doc);
@@ -618,7 +555,7 @@ describe('ATS: Structural validation', () => {
     const sections = Array.from(doc.querySelectorAll('section'));
     const headings = sections.map((s) => s.querySelector('h2')!.textContent!.trim());
 
-    const expectedOrder = ['Profile', 'Experience', 'Education', 'Skills', 'Course', 'Certifications'];
+    const expectedOrder = ['Profile', 'Experience', 'Education', 'Skills'];
     expect(headings).toEqual(expectedOrder);
   });
 

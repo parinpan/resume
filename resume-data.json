@@ -3,6 +3,7 @@
   "title": "Senior Software Engineer",
   "contact": {
     "location": "Berlin, Germany",
+    "workAuthorization": "Permanent Resident",
     "phone": "+491639860973",
     "email": "engineering@fachr.in",
     "website": "https://fachr.in",
@@ -13,7 +14,7 @@
     {
       "type": "profile",
       "title": "Profile",
-      "data": "Senior Product Engineer with 10 years of experience building systems that serve millions across ecommerce, mobility, food delivery, and fintech, from ride services in Southeast Asia at Gojek to investment infrastructure in Europe at Upvest. Strongest in owning ambiguous product problems end to end, automating manual workflows, and turning painful systems into reliable, scalable platforms."
+      "data": "Senior Product Engineer with 9+ years of experience building systems that serve millions across ecommerce, on-demand mobility, food delivery, and fintech, from ride services in Southeast Asia at Gojek to investment infrastructure in Europe at Upvest. Strongest in owning ambiguous product problems end to end, automating manual workflows, and turning painful systems into reliable, scalable platforms."
     },
     {
       "type": "experiences",
@@ -78,7 +79,7 @@
               ]
             },
             {
-              "text": "Conducted technical interviews for software developer candidates and built the question bank and evaluation standards used by the engineering team."
+              "text": "Interviewed software engineering candidates and contributed to the question bank and evaluation criteria the team used to assess them, giving interviewers a consistent set of questions and a shared scoring standard for evaluating candidates fairly."
             }
           ]
         },
@@ -247,9 +248,8 @@
           "location": "Medan, Indonesia",
           "period": "Sep 2014 - Apr 2019",
           "bullets": [
-            "Grade Point Average: 3.73 out of 4",
-            "Served as a teaching assistant for Programming Fundamentals, Mobile Programming, Object-Oriented Programming, Data Structures and Algorithms, Internet Programming, and Semantic Web",
-            "Built a Single Sign-On system used by thousands of employees, students, and alumni (https://akun.usu.ac.id), and a student directory mobile app used by hundreds of students. The directory app was one of the first student-built tools adopted at that scale on campus."
+            "Built a low-latency Single Sign-On system used by thousands of employees, students, and alumni (https://akun.usu.ac.id).",
+            "Served as a teaching assistant for Programming Fundamentals, Mobile Programming, Object-Oriented Programming, Data Structures and Algorithms, Internet Programming, and Semantic Web"
           ]
         }
       ]
@@ -262,8 +262,8 @@
           "category": "Programming Languages",
           "items": [
             "Go",
-            "Python",
             "Typescript",
+            "Python",
             "Clojure",
             "Java"
           ]
@@ -274,8 +274,7 @@
             "PostgreSQL",
             "MySQL",
             "DynamoDB",
-            "Redis",
-            "Cassandra"
+            "Redis"
           ]
         },
         {
@@ -287,11 +286,7 @@
               "fullForm": "Amazon Simple Queue Service"
             },
             "RabbitMQ",
-            "NSQ",
-            {
-              "name": "STOMP",
-              "fullForm": "Simple Text Oriented Messaging Protocol"
-            }
+            "NSQ"
           ]
         },
         {
@@ -305,7 +300,6 @@
               "name": "gRPC",
               "fullForm": "gRPC Remote Procedure Calls"
             },
-            "Twirp",
             "Websocket",
             {
               "name": "WebRTC",
@@ -331,19 +325,19 @@
             {
               "name": "AWS",
               "fullForm": "Amazon Web Services"
-            },
-            "Aliyun"
+            }
           ]
         },
         {
           "category": "APIs, Load Balancers, Reverse Proxies",
           "items": [
-            "GraphQL",
+            "Kong",
             {
               "name": "HAProxy",
               "fullForm": "High Availability Proxy"
             },
-            "Nginx"
+            "Nginx",
+            "GraphQL"
           ]
         },
         {
@@ -355,6 +349,15 @@
             "Prometheus",
             "Grafana",
             "Datadog"
+          ]
+        },
+        {
+          "category": "AI Coding Tools",
+          "items": [
+            "OpenCode",
+            "Claude Code",
+            "Codex",
+            "Omniroute"
           ]
         }
       ]

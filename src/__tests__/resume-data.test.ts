@@ -226,48 +226,4 @@ describe('resume-data.json', () => {
       }
     });
   });
-
-  describe('courses section', () => {
-    const section = data.sections.find((s) => s.type === 'courses');
-
-    it('exists with at least one course', () => {
-      expect(section).toBeDefined();
-      if (section?.type === 'courses') {
-        expect(section.data.length).toBeGreaterThan(0);
-      }
-    });
-
-    it('every course has required fields', () => {
-      if (section?.type === 'courses') {
-        for (const course of section.data) {
-          expect(course.title).toBeTruthy();
-          expect(course.location).toBeTruthy();
-          expect(course.period).toBeTruthy();
-          expect(course.description).toBeTruthy();
-        }
-      }
-    });
-  });
-
-  describe('certifications section', () => {
-    const section = data.sections.find((s) => s.type === 'certifications');
-
-    it('exists with at least one certification', () => {
-      expect(section).toBeDefined();
-      if (section?.type === 'certifications') {
-        expect(section.data.length).toBeGreaterThan(0);
-      }
-    });
-
-    it('every certification has required fields', () => {
-      if (section?.type === 'certifications') {
-        for (const cert of section.data) {
-          expect(cert.name).toBeTruthy();
-          expect(cert.issuer).toBeTruthy();
-          expect(cert.year).toBeTruthy();
-          expect(cert.year).toMatch(/^\d{4}$/);
-        }
-      }
-    });
-  });
 });

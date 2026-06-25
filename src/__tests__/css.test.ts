@@ -51,7 +51,7 @@ describe('CSS custom properties', () => {
     expect(css).toMatch(/--sz-name:\s*14pt/);
     expect(css).toMatch(/--sz-section:\s*12pt/);
     expect(css).toMatch(/--sz-entry:\s*10pt/);
-    expect(css).toMatch(/--sz-body:\s*9pt/);
+    expect(css).toMatch(/--sz-body:\s*8\.5pt/);
     expect(css).toMatch(/--lh:\s*1\.4/);
   });
 
