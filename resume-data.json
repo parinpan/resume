@@ -129,7 +129,7 @@
           "period": "Apr 2020 - May 2022",
           "bullets": [
             {
-              "text": "Led the launch of new service types such as GoCar Protect, GoRide EV, and GoCar Premium across multiple Southeast Asian markets, and was heavily involved in the initial technical analysis and cross-functional execution. It greatly helped Gojek in gaining a large number of active users and becoming the market's top-of-mind during the pandemic.",
+              "text": "Led the launch of new service types such as GoCar Protect, GoRide EV, and GoCar Premium across multiple Southeast Asian markets, driving the initial technical analysis and cross-functional execution. It greatly helped Gojek in gaining a large number of active users and becoming the market's top-of-mind during the pandemic.",
               "tech": [
                 "Golang",
                 "Kafka",
@@ -248,7 +248,7 @@
           "location": "Medan, Indonesia",
           "period": "Sep 2014 - Apr 2019",
           "bullets": [
-            "Built a low-latency Single Sign-On system that unified authentication across the university's systems, serving thousands of employees, students, and alumni (https://akun.usu.ac.id).",
+            "Built a low-latency Single Sign-On system that unified authentication across the university's services, serving thousands of employees, students, and alumni (https://akun.usu.ac.id).",
             "Served as a teaching assistant for Programming Fundamentals, Mobile Programming, Object-Oriented Programming, Data Structures and Algorithms, Internet Programming, and Semantic Web."
           ]
         }
