@@ -91,7 +91,7 @@ describe('Home page', () => {
     const { container } = render(<Home />);
     const script = container.querySelector('script[type="application/ld+json"]');
     const jsonLd = JSON.parse(script!.textContent!);
-    expect(jsonLd.mainEntity.email).toBe('engineering@fachr.in');
+    expect(jsonLd.mainEntity.email).toBe('fachrinfan@gmail.com');
     expect(jsonLd.mainEntity.telephone).toBe('+491639860973');
     expect(jsonLd.mainEntity.address.addressLocality).toBe('Berlin');
     expect(jsonLd.mainEntity.address.addressCountry).toBe('Germany');
