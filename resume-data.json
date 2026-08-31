@@ -246,7 +246,7 @@
           "degree": "Bachelor of Computer Science",
           "institution": "University of Sumatera Utara",
           "location": "Medan, Indonesia",
-          "period": "Sep 2014 - Apr 2019",
+          "period": "Jul 2014 - Apr 2019",
           "bullets": [
             "Built a low-latency Single Sign-On system that unified authentication across the university's services, serving thousands of employees, students, and alumni (https://akun.usu.ac.id).",
             "Served as a teaching assistant for Programming Fundamentals, Mobile Programming, Object-Oriented Programming, Data Structures and Algorithms, Internet Programming, and Semantic Web."
