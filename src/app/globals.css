@@ -1,0 +1,107 @@
+@import "next/font/google";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Calibrated for Lora (Google Fonts) to fit 2 A4 pages */
+  --sz-name:    14pt;
+  --sz-section: 12pt;
+  --sz-entry:   10pt;
+  --sz-body:   8.5pt;
+  --lh: 1.4;
+}
+
+html,
+body {
+  background: #2d2d2d;
+  font-family: var(--font-lora), Georgia, serif;
+  color: #000;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  overflow-x: hidden;
+}
+
+/* ─── Visually hidden but accessible to screen readers & ATS ─── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Page shell (A4: 596×842pt) ─── */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  margin: 24px auto;
+  padding: 13mm;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .25);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  zoom: 1.35;                                       /* fallback */
+  zoom: min(1.35, calc((100vw - 32px) / 210mm));     /* responsive */
+}
+
+/* ─── Mobile ─── */
+@media screen and (max-width: 1200px) {
+  :root {
+    --sz-name:    24px;
+    --sz-section: 20px;
+    --sz-entry:   17px;
+    --sz-body:    16px;
+    --lh: 1.5;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  .page {
+    width: 100%;
+    min-height: unset;
+    margin: 0;
+    padding: 32px 28px 80px;
+    box-shadow: none;
+    border-radius: 0;
+    zoom: 1;
+  }
+}
+
+/* ─── Print ─── */
+@media print {
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  .page {
+    margin: 0;
+    width: 100%;
+    min-height: unset;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    zoom: 1;
+    display: block;            /* allow normal flow fragmentation */
+  }
+
+  @page {
+    size: A4;
+    margin: 13mm;
+  }
+}

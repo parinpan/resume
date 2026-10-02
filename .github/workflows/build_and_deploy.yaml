@@ -1,0 +1,66 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: [test]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fetch shared CI scripts (k3s-deployments)
+        run: |
+          curl -fsSL -H "Authorization: token ${{ secrets.SCRIPTS_TOKEN }}" \
+            "https://git.fachr.in/fachrinfan/k3s-deployments/raw/${SCRIPTS_REF:-main}/scripts/ci/build-and-push.sh" \
+            -o /tmp/build-and-push.sh
+
+      - name: Build and push (shared script)
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          IMAGE_NAME: resume
+          IMAGE_TAG: latest
+        run: bash /tmp/build-and-push.sh
+  deploy:
+    name: Production Deployment
+    runs-on: ubuntu-latest
+    needs: [test, build]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Prepare deployment manifest
+        run: |
+          sed -ie "s/{{build_date}}/$(date)/g" deployment.yaml
+
+      - name: Deploy to Kubernetes
+        uses: actions-hub/kubectl@v1.29.0
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: apply -f deployment.yaml 
